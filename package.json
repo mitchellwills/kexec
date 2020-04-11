@@ -1,5 +1,5 @@
 {
-  "name": "@jcoreio/kexec",
+  "name": "kexec",
   "version": "3.0.0",
   "description": "Replace your Node.js process with another process. Like Ruby exec.",
   "homepage": "https://github.com/jprichardson/node-kexec",
