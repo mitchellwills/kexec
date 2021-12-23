@@ -27,6 +27,7 @@ void Kexec(const Napi::CallbackInfo& info) {
     // Hold onto a reference to the std::string, to ensure the backing store for the c_str value isn't de-allocated.
     std::string strCmd = info[0].As<Napi::String>().Utf8Value();
     char *cmd = const_cast<char*>(strCmd.c_str());
+    std::vector<std::string> strArgs;
 
     char **argv;
     if (1 == info.Length()) {
@@ -43,7 +44,7 @@ void Kexec(const Napi::CallbackInfo& info) {
         Napi::Array argsFromJS = info[1].As<Napi::Array>();
         const int numArgs = argsFromJS.Length();
 
-        std::vector<std::string> strArgs(numArgs);
+        strArgs.resize(numArgs);
         argv = new char*[numArgs + 2];
         argv[0] = cmd;
         for (int argIdx = 0; argIdx < numArgs; ++argIdx) {
